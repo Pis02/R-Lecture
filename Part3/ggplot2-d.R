@@ -32,7 +32,7 @@ mtcars %>%
   group_by(cyl) %>%
   summarise_each(funs(mean, n()), disp, hp) #혹은 summarise_each(list(mean), disp, hp)
 
-iris #품종별 4개의 꽃받침 Sepal, 꽃잎 Petal 평균
+iris #품종별 4개의 꽃받침 Sepal, 꽃잎 Petal 평균 -> ex)인공지능으로 사이즈 확인 및 결과 도출도 한다.
 iris %>%
   group_by(Species) %>%
   summarise_each(list(mean), Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)
