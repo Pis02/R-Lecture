@@ -1,0 +1,367 @@
+CREATE TABLE if NOT EXISTS address_book (
+	NO INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	NAME VARCHAR(10) NOT NULL,
+	tel VARCHAR(14),
+	nickname VARCHAR(20) DEFAULT '별명',
+	PRIMARY KEY(NO)
+) AUTO_INCREMENT = 10001 DEFAULT CHARSET=UTF8;
+
+------------------------------------------------------------------
+
+CREATE TABLE Eagles (
+	backNo INT unsigned not NULL PRIMARY key,
+	NAME VARCHAR(10) NOT NULL,
+	POSITION VARCHAR(4) NOT NULL,
+	highschool VARCHAR(10),
+	hand VARCHAR(4)
+)
+
+------------------------------------------------------------------
+
+SELECT * FROM eagles;
+
+----------------------------------------------------------------
+
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SHOW TABLES;
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT `DEFAULT_COLLATION_NAME` FROM `information_schema`.`SCHEMATA` WHERE `SCHEMA_NAME`='mysql';
+SHOW TABLE STATUS FROM `mysql`;
+SHOW FUNCTION STATUS WHERE `Db`='mysql';
+SHOW PROCEDURE STATUS WHERE `Db`='mysql';
+SHOW TRIGGERS FROM `mysql`;
+SELECT *, EVENT_SCHEMA AS `Db`, EVENT_NAME AS `Name` FROM information_schema.`EVENTS` WHERE `EVENT_SCHEMA`='mysql';
+USE `information_schema`;
+USE `ezen`;
+SHOW DATABASES;
+/* "SmartData" 세션 시작 */
+SELECT `DEFAULT_COLLATION_NAME` FROM `information_schema`.`SCHEMATA` WHERE `SCHEMA_NAME`='ezen';
+SHOW TABLE STATUS FROM `ezen`;
+SHOW FUNCTION STATUS WHERE `Db`='ezen';
+SHOW PROCEDURE STATUS WHERE `Db`='ezen';
+SHOW TRIGGERS FROM `ezen`;
+SELECT *, EVENT_SCHEMA AS `Db`, EVENT_NAME AS `Name` FROM information_schema.`EVENTS` WHERE `EVENT_SCHEMA`='ezen';
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 4  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+ALTER TABLE addr_book ADD gender CHAR(2) NOT NULL;
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.032 sec. */
+ALTER TABLE addr_book ADD email VARCHAR(20) NOT NULL AFTER tel;
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 6  경고: 0  지속 시간 2 쿼리: 0.031 sec. */
+ALTER TABLE addr_book drop nickname;
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.031 sec. */
+ALTER TABLE addr_book change NO abid INT(8);
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.032 sec. */
+ALTER TABLE addr_book change NO abId INT(8);
+/* SQL 오류 (1054): Unknown column 'NO' in 'addr_book' */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 2 쿼리: 0.000 sec. */
+ALTER TABLE addr_book change abid abId INT(8);
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.016 sec. */
+ALTER TABLE addr_book change abId abId INT unsigend NOT NULL auto_increment;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unsigend NOT NULL auto_increment' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 2 쿼리: 0.000 sec. */
+ALTER TABLE addr_book change abId abId INT unsigned NOT NULL auto_increment;
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.031 sec. */
+alter table addr_book modify gender AFTER name;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AFTER name' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 2 쿼리: 0.000 sec. */
+alter table addr_book modify gender CHAR(2) AFTER name;
+DESC addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 2 쿼리: 0.015 sec. */
+USE world;
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT `DEFAULT_COLLATION_NAME` FROM `information_schema`.`SCHEMATA` WHERE `SCHEMA_NAME`='world';
+SHOW TABLE STATUS FROM `world`;
+SHOW FUNCTION STATUS WHERE `Db`='world';
+SHOW PROCEDURE STATUS WHERE `Db`='world';
+SHOW TRIGGERS FROM `world`;
+SELECT *, EVENT_SCHEMA AS `Db`, EVENT_NAME AS `Name` FROM information_schema.`EVENTS` WHERE `EVENT_SCHEMA`='world';
+SHOW CREATE TABLE `world`.`city`;
+SHOW COLLATION;
+SHOW ENGINES;
+SHOW CREATE TABLE `world`.`country`;
+SHOW CREATE TABLE `world`.`countrylanguage`;
+SHOW CREATE TABLE `world`.`city`;
+SELECT * FROM `world`.`city` LIMIT 1000;
+SHOW CREATE TABLE `world`.`city`;
+SHOW TABLE STATUS LIKE 'city';
+SHOW CREATE TABLE `world`.`country`;
+SELECT * FROM `world`.`country` LIMIT 1000;
+SHOW CREATE TABLE `world`.`country`;
+SHOW CREATE TABLE `world`.`countrylanguage`;
+SELECT * FROM `world`.`countrylanguage` LIMIT 1000;
+SHOW CREATE TABLE `world`.`countrylanguage`;
+SHOW CREATE TABLE `world`.`city`;
+SELECT * FROM `world`.`city` LIMIT 1000;
+SHOW CREATE TABLE `world`.`city`;
+SHOW TABLE STATUS LIKE 'city';
+SELECT * FROM city;
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 쿼리: 0.000 sec. (+ 0.016 sec. 네트워크) */
+SELECT * FROM city;
+WHERE countycode = 'kor';
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE countycode = 'kor'' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 of 2 쿼리: 0.000 sec. */
+SELECT * FROM city;
+WHERE countycode = 'KOR';
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE countycode = 'KOR'' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 of 2 쿼리: 0.000 sec. */
+SELECT * FROM city;
+WHERE countrycode = 'kor';
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE countrycode = 'kor'' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 of 2 쿼리: 0.000 sec. */
+SELECT * FROM city;
+WHERE countrycode = 'KOR';
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE countrycode = 'KOR'' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 of 2 쿼리: 0.000 sec. */
+SELECT * FROM city WHERE countrycode = 'KOR';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+SELECT * FROM city WHERE countrycode = 'kor';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where district='kyonggi';
+/* 영향 받은 행: 0  찾은 행: 18  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where district like 'kyonggi';
+/* 영향 받은 행: 0  찾은 행: 18  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+SHOW CREATE TABLE `world`.`city`;
+select * from city where district like 'kyonggi' AND population > 500000;
+/* 영향 받은 행: 0  찾은 행: 6  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district district from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select distinct district from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 15  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * from mysql.addr_book;
+/* SQL 오류 (1146): Table 'mysql.addr_book' doesn't exist */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+SELECT * FROM ezen.addr_book;
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * DESC ezen.addr_book;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DESC ezen.addr_book' at line 1 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+DESC ezen.addr_book;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * FROM city WHERE district LIKE 'Taejon' OR district LIKE 'chungchongbuk' OR district LIKE 'chungchongnam';
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.015 sec. */
+SELECT * FROM city WHERE district LIKE 'Taejon' OR district LIKE 'chungchong*';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * FROM city WHERE district LIKE 'Taejon' OR district LIKE 'chungchong%';
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SHOW CREATE TABLE `world`.`country`;
+SHOW CREATE TABLE `world`.`city`;
+SELECT * FROM city WHERE contrycode LIKE 'kor' and population > 1000000;
+/* SQL 오류 (1054): Unknown column 'contrycode' in 'where clause' */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+SELECT * FROM city WHERE countrycode LIKE 'kor' and population > 1000000;
+/* 영향 받은 행: 0  찾은 행: 7  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+SELECT * FROM city WHERE countrycode LIKE 'kor' and population > 1000000 AND ID%2 = 1;
+/* 영향 받은 행: 0  찾은 행: 4  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where 
+	countrycode='kor' andpopulation between 1000000  and 2000000;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'andpopulation between 1000000  and 2000000' at line 2 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+select * from city where 
+	countrycode='kor' and population between 1000000  and 2000000;
+/* 영향 받은 행: 0  찾은 행: 3  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where 
+	countrycode='kor' and population between 1000000 and 2000000;
+/* 영향 받은 행: 0  찾은 행: 3  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where 
+	countrycode='kor' and NAME LIKE 'tae%';
+/* 영향 받은 행: 0  찾은 행: 2  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city WHERE district LIKE 'kyonggi' ORDER BY NAME;
+/* 영향 받은 행: 0  찾은 행: 18  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city WHERE district LIKE 'kyonggi' ORDER BY population desc;
+/* 영향 받은 행: 0  찾은 행: 18  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+select * from city 
+	where countrycode='kor' order by district, population;
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city 
+	where countrycode='kor' order by district, population desc;
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city 
+	where countrycode='kor' order by district, population;
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where countrycode='kor' order by district;
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select count(*) from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select min(population) from city;
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT max(population) from city;
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT NAME, min(population) from city;
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT NAME, min(population) from city WHERE countrycode = 'kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT sum(population) from city WHERE countrycode = 'kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select min(population), max(population), avg(population), 
+	sum(population) from city where countrycode = 'kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select min(population), max(population), avg(population), 
+	sum(population) from city where countrycode = 'kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select group_concat(name) from city where district='chungchongnam';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select group_concat(distinct district) from city 
+	where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select group_concat(distinct district) from city 
+	where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district, count(*) from city where countrycode='kor';
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select * from city where countrycode='kor' group by district;
+/* 영향 받은 행: 0  찾은 행: 15  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district, count(*) from city 
+	where countrycode='kor' group by district;
+/* 영향 받은 행: 0  찾은 행: 15  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district, count(*) from city where countrycode='kor'
+	group by district having count(*)=6;
+/* 영향 받은 행: 0  찾은 행: 2  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district, count(*) from city where countrycode='kor'
+	group by district having COUNT(*)>=6;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select district, count(*) from city where countrycode='kor'
+	group by district having COUNT(*)>=6 ORDER BY COUNT(*) desc;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select countrycode, count(*) from city 
+	group by countrycode having count(*) >=50;
+/* 영향 받은 행: 0  찾은 행: 20  경고: 0  지속 시간 1 쿼리: 0.015 sec. */
+select countrycode, count(*) from city group by countrycode 
+	having count(*) >=50 order by count(*) desc;
+/* 영향 받은 행: 0  찾은 행: 20  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SHOW CREATE TABLE `world`.`country`;
+SELECT * FROM `world`.`country` LIMIT 1000;
+SHOW CREATE TABLE `world`.`country`;
+select city.Name, city.Population, country.Name from city
+	inner join country on city.CountryCode = country.Code;
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 쿼리: 0.000 sec. (+ 0.016 sec. 네트워크) */
+desc country;
+/* 영향 받은 행: 0  찾은 행: 15  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+desc countrylanguage;
+/* 영향 받은 행: 0  찾은 행: 4  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select city.Name, city.Population, country.Name from city
+	inner join country on city.CountryCode = country.Code;
+/* 영향 받은 행: 0  찾은 행: 4,079  경고: 0  지속 시간 1 쿼리: 0.000 sec. (+ 0.016 sec. 네트워크) */
+select city.Name, city.Population, country.Name from city
+inner join country on city.CountryCode = country.Code 
+	where city.CountryCode='kor';
+/* 영향 받은 행: 0  찾은 행: 70  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select city.Name, city.Population, country.Name from city
+	inner join country on city.CountryCode = country.Code 
+	where city.Population > 7000000;
+/* 영향 받은 행: 0  찾은 행: 14  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT `DEFAULT_COLLATION_NAME` FROM `information_schema`.`SCHEMATA` WHERE `SCHEMA_NAME`='';
+SHOW TABLE STATUS FROM ``;
+/* SQL 오류 (1102): Incorrect database name '' */
+SHOW FUNCTION STATUS WHERE `Db`='';
+SHOW PROCEDURE STATUS WHERE `Db`='';
+SHOW TRIGGERS FROM ``;
+/* SQL 오류 (1102): Incorrect database name '' */
+SELECT *, EVENT_SCHEMA AS `Db`, EVENT_NAME AS `Name` FROM information_schema.`EVENTS` WHERE `EVENT_SCHEMA`='';
+select city.Name, city.Population, country.Name from city
+	inner join country on city.CountryCode = country.Code 
+	where city.Population > 7000000 ORDER BY city.population desc;
+/* 영향 받은 행: 0  찾은 행: 14  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+select city.Name, city.Population, country.Name from city
+	inner join country on city.CountryCode = country.Code 
+	where city.Population > 7000000 ORDER BY city.population DESC LIMIT 5;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+USE `ezen`;
+SHOW CREATE TABLE `ezen`.`addr_book`;
+CREATE TABLE Eagles (
+	backNo INT unsigned not NULL PRIMARY key,
+	NAME VARCHAR(10) NOT NULL,
+	POSITION VARCHAR(4) NOT NULL,
+	highschool VARCHAR(10),
+	hand VARCHAR(4)
+);
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.016 sec. */
+DESC Egles;
+/* SQL 오류 (1146): Table 'ezen.egles' doesn't exist */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+DESC Eagles;
+/* 영향 받은 행: 0  찾은 행: 5  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SHOW DATABASES;
+/* "SmartData" 세션 시작 */
+SELECT `DEFAULT_COLLATION_NAME` FROM `information_schema`.`SCHEMATA` WHERE `SCHEMA_NAME`='ezen';
+SHOW TABLE STATUS FROM `ezen`;
+SHOW FUNCTION STATUS WHERE `Db`='ezen';
+SHOW PROCEDURE STATUS WHERE `Db`='ezen';
+SHOW TRIGGERS FROM `ezen`;
+SELECT *, EVENT_SCHEMA AS `Db`, EVENT_NAME AS `Name` FROM information_schema.`EVENTS` WHERE `EVENT_SCHEMA`='ezen';
+INSERT INTO Eagles VALUES (22, '이태양', '투수', '순천효천고', '우투우타');
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 1  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles (backNo, NAME, POSITION) VALUES(36, '장민재', '투수');
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles (backNo, NAME, POSITION) VALUES(36, '장민재', '투수');
+/* SQL 오류 (1062): Duplicate entry '36' for key 'PRIMARY' */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 2 쿼리: 0.000 sec. */
+INSERT INTO Eagles (backNo, NAME, POSITION) VALUES(36, '장민재', '투수')
+SELECT * FROM eagles;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM eagles' at line 2 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 2  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles VALUES 
+	(8, '정근우', '타자', '부산고', '우타'), (52, '김태균', '타자', '천안북일고', '우타'), (50, '이성열', '타자', '순천효천고', '좌타'),
+	(13, '최재훈', '포수', '덕수고', '우타'), (27, '변우혁', '타자', '천안북일고', '우타'), (61, '김성훈', '투수', '경기고', '우타');
+/* 영향 받은 행: 6  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles VALUES 
+	(8, '정근우', '타자', '부산고', '우타'), (52, '김태균', '타자', '천안북일고', '우타'), (50, '이성열', '타자', '순천효천고', '좌타'),
+	(13, '최재훈', '포수', '덕수고', '우타'), (27, '변우혁', '타자', '천안북일고', '우타'), (61, '김성훈', '투수', '경기고', '우타');
+/* SQL 오류 (1062): Duplicate entry '8' for key 'PRIMARY' */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles VALUES 
+	(8, '정근우', '타자', '부산고', '우타'), (52, '김태균', '타자', '천안북일고', '우타'), (50, '이성열', '타자', '순천효천고', '좌타'),
+	(13, '최재훈', '포수', '덕수고', '우타'), (27, '변우혁', '타자', '천안북일고', '우타'), (61, '김성훈', '투수', '경기고', '우타')
+SELECT * FROM eagles;
+/* SQL 오류 (1064): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM eagles' at line 4 */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 8  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles VALUES 
+	(43, '정은원', '타자', '인천고', '좌타');
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles (backNo, NAME, POSITION, hand) VALUES (30, '호잉', '타자', '좌타');
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SHOW CREATE TABLE `ezen`.`eagles`;
+UPDATE `ezen`.`eagles` SET `hand`='우투' WHERE  `backNo`=22;
+SELECT `backNo`, `NAME`, `POSITION`, `highschool`, `hand` FROM `ezen`.`eagles` WHERE  `backNo`=22;
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+UPDATE eagles SET highschool='광주제일고', hand='우투'
+	WHERE backNo='36';
+SELECT * FROM eagles;
+/* 영향 받은 행: 1  찾은 행: 10  경고: 0  지속 시간 2 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+UPDATE eagles SET POSITION='외야수' WHERE backno='50';
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 10  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+USE `ezen`;
+DELETE FROM eagles WHERE backno='30';
+/* 영향 받은 행: 1  찾은 행: 0  경고: 0  지속 시간 1 쿼리: 0.015 sec. */
+USE `sakila`;
+SELECT * FROM eagles;
+/* SQL 오류 (1146): Table 'sakila.eagles' doesn't exist */
+/* 영향 받은 행: 0  찾은 행: 0  경고: 0  지속 시간 0 of 1 쿼리: 0.000 sec. */
+USE `ezen`;
+SELECT * FROM eagles;
+/* 영향 받은 행: 0  찾은 행: 9  경고: 0  지속 시간 1 쿼리: 0.000 sec. */
+INSERT INTO Eagles (backNo, NAME, POSITION, hand) VALUES (30, '호잉', '타자', '좌타');
+SELECT * FROM eagles;
+/* 영향 받은 행: 1  찾은 행: 10  경고: 0  지속 시간 2 쿼리: 0.000 sec. */

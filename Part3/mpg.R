@@ -1,6 +1,7 @@
 install.packages("ggplot2")
 library(ggplot2)
 mpg
+library(dplyr)
 
 View(mpg)
 
@@ -20,7 +21,7 @@ mpg %>%
   summarise(average = mean(hwy))
 
 #4
-mpg_4 <- select((mpg, class, cty))
+mpg_4 <- select(mpg, class, cty)
 head(mpg_4); tail(mpg_4)
 
 #5
@@ -31,7 +32,7 @@ mpg_4 %>%
 
 #6
 mpg %>%
-  file(manufacturer == 'audi') %>%
+  filter(manufacturer == 'audi') %>%
   select(manufacturer, model, hwy) %>%
   arrange(desc(hwy)) %>%
   head(5)
@@ -42,9 +43,19 @@ mpg_new <- mpg %>%
 
 #7-2
 mpg_new <- mpg_new %>%
-  mutate(ch_avg = aty_hwy /2)
+  mutate(ch_avg = cty_hwy /2)
 
 #7-3
+mpg_new %>%
+  arrange(desc(ch_avg)) %>%
+  head(3)
+
+#7-4
+mpg %>%
+  select(-displ:-drv) %>%
+  mutate(cty_hwy = cty + hwy, ch_avg = cty_hwy/2) %>%
+  arrange(desc(ch_avg)) %>%
+  head(3)
 
 #8
 mpg %>%
@@ -52,6 +63,10 @@ mpg %>%
   summarise(average = mean(cty))
 
 #9
+mpg %>%
+  group_by(class) %>%
+  summarise(average = mean(cty)) %>%
+  arrange(desc(average))
 
 #10
 mpg %>%
@@ -61,3 +76,8 @@ mpg %>%
   head(3)
 
 #11
+mpg %>%
+  filter(class == 'compact') %>%
+  group_by(manufacturer) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
