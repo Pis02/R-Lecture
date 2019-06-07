@@ -99,23 +99,38 @@ for (i in 2:9){
 #구구단 2단부터 9단까지 출력
 #paste -> 문자열을 붙이는 역할!!!!
 
-While (T) {
-  for (i in 1:4){
+while (T) {
+  for (i in 1:4) {
     line <- ''
-    if(i!=4){
-      for(k in 1:(3-(i-1)))
+    if (i != 4) {
+      for (k in 1:(3 - (i - 1)))
         line <- str_c(line, ' ')
     }
-    for(k in i:(2*i-1))
+    for (k in 1:(2*i - 1))
       line <- str_c(line, '#')
     print(line)
   }
-  for (i in 3:1){
+  for (i in 3:1) {
     line <- ''
-    for(k in 1:(3-(i-1)))
-      line <- star
+    for (k in 1:(3 - (i - 1)))
+      line <- str_c(line, ' ')
+    for (k in 1:(2*i - 1))
+      line <- str_c(line, '#')
+    print(line)
   }
+  break;
 }
-#다이아몬드 확인 필요!!!!!!!!!!!!!!!
+#다이아몬드 모양 출력
 
+getDenominator <- function(x) {
+  den <- c(1)
+  if (x >= 2) {
+    for (i in 2:x) {
+      if (x %% i == 0)
+        den <- c(den, i)
+    }
+  }
+  return(den)
+}
+getDenominator(60)
 #약수 구하는거 확인 필요!!!!!!!!!!!
